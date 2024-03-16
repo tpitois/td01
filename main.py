@@ -30,7 +30,9 @@ def get_score(word: str, letter_score: dict[str, int]) -> int:
 
 
 if __name__ == "__main__":
-
+    """
+    usage: words.txt letter_score.json "the_draw"
+    """
     words = []
     with open(sys.argv[1], 'r') as f:
         for line in f:
