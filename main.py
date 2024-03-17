@@ -33,13 +33,19 @@ if __name__ == "__main__":
     """
     usage: words.txt letter_score.json "the_draw"
     """
-    words = []
-    with open(sys.argv[1], 'r') as f:
-        for line in f:
-            words.append(line[:-1])
-    with open(sys.argv[2], 'r') as f:
-        letter_score = json.load(f)
+    try:
+        words = []
+        with open(sys.argv[1], 'r') as f:
+            for line in f:
+                words.append(line[:-1])
+        with open(sys.argv[2], 'r') as f:
+            letter_score = json.load(f)
+        draw = list(sys.argv[3])
+    except:
+        words = ['sacre', 'toto', 'baser', 'cabre', 'garce', 'crase', 'brase', 'barge', 'caser', 'jaser', 'bonjour', 'oui']
+        letter_score = dict([(chr(x), 1) for x in range(123)])
+        draw = ['a', 'r', 'b', 'g', 'e', 's', 'c', 'j']
 
-    draw = list(sys.argv[3])
     max_score_word = max(words, key=lambda word : get_score(word, letter_score) if is_possible(word, draw) else 0)
     print(max_score_word)
+    
